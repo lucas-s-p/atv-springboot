@@ -35,8 +35,17 @@ public class LivroV1Controller {
                 .body(livroCrudService.buscarTodosLivros());
     }
 
+    @GetMapping("/busca")
+    public ResponseEntity<List<LivroResponseDto>> buscarLivrosPorIsbnOuTitulo(
+            @RequestParam(required = false) String isbn,
+            @RequestParam(required = false) String titulo) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(livroCrudService.buscarLivrosPorIsbnOuTitulo(isbn, titulo));
+    }
+
     @GetMapping("/{isbn}")
-    public ResponseEntity<LivroResponseDto> buscarLivro(@PathVariable Long isbn) {
+    public ResponseEntity<LivroResponseDto> buscarLivro(@PathVariable String isbn) {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(livroCrudService.buscarLivro(isbn));
@@ -44,7 +53,7 @@ public class LivroV1Controller {
 
     @PutMapping("/{isbn}")
     public ResponseEntity<LivroResponseDto> atualizarLivro(
-            @PathVariable Long isbn,
+            @PathVariable String isbn,
             @RequestBody @Valid LivroPostPutDto livroPostPutDto) {
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -52,7 +61,7 @@ public class LivroV1Controller {
     }
 
     @DeleteMapping("/{isbn}")
-    public ResponseEntity<Void> removerLivro(@PathVariable Long isbn) {
+    public ResponseEntity<Void> removerLivro(@PathVariable String isbn) {
         livroCrudService.removerLivro(isbn);
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
