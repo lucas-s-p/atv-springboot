@@ -27,6 +27,8 @@ public class Autor {
     @JsonProperty("nacionalidade")
     private String nacionalidade;
 
+    
+
     // Adicione a relação com Livro aqui
 
 }
