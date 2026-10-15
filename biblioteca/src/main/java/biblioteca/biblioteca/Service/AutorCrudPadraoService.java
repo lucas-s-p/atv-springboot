@@ -50,11 +50,9 @@ public class AutorCrudPadraoService implements AutorCrudService {
 
     @Override
     public void removerAutor(Long id) {
-        // delete(entidade) permite que o cascade da relação remova também os livros do autor
         autorRepository.delete(obterAutorExistente(id));
     }
 
-    // id inexistente = 404
     private Autor obterAutorExistente(Long id) {
         return autorRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Autor não encontrado"));
