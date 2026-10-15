@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Builder
 @Data
@@ -28,5 +30,6 @@ public class Autor {
     private String nacionalidade;
 
     // Adicione a relação com Livro aqui
-
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Livro> livros;
 }
