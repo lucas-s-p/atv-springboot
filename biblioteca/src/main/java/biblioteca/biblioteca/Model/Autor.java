@@ -6,6 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.*;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Builder
@@ -28,5 +32,11 @@ public class Autor {
     private String nacionalidade;
 
     // Adicione a relação com Livro aqui
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.REMOVE)
+    @Builder.Default
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
+    private List<Livro> livros = new ArrayList<>();
 
 }
