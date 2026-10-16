@@ -28,5 +28,6 @@ public class Autor {
     private String nacionalidade;
 
     // Adicione a relação com Livro aqui
-
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private java.util.List<Livro> livros;
 }
