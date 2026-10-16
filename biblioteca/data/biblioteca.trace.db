@@ -1,0 +1,15 @@
+	at org.h2.mvstore.RandomAccessStore.compactMoveChunks(RandomAccessStore.java:463)
+	at org.h2.mvstore.RandomAccessStore.compactStore(RandomAccessStore.java:443)
+	at org.h2.mvstore.FileStore.compactStore(FileStore.java:890)
+	at org.h2.mvstore.FileStore.stop(FileStore.java:275)
+	at org.h2.mvstore.MVStore.closeStore(MVStore.java:693)
+	at org.h2.mvstore.MVStore.close(MVStore.java:643)
+	at org.h2.mvstore.db.Store.close(Store.java:364)
+	... 6 more
+Caused by: java.io.IOException: Cota da disco excedida
+	at java.base/sun.nio.ch.UnixFileDispatcherImpl.force0(Native Method)
+	at java.base/sun.nio.ch.UnixFileDispatcherImpl.force(UnixFileDispatcherImpl.java:85)
+	at java.base/sun.nio.ch.FileChannelImpl.implForce(FileChannelImpl.java:620)
+	at java.base/sun.nio.ch.FileChannelImpl.force(FileChannelImpl.java:635)
+	at org.h2.mvstore.SingleFileStore.sync(SingleFileStore.java:179)
+	... 18 more
