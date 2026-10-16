@@ -1,5 +1,8 @@
 package biblioteca.biblioteca.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,6 +30,8 @@ public class Autor {
     @JsonProperty("nacionalidade")
     private String nacionalidade;
 
-    // Adicione a relação com Livro aqui
-
+    @Builder.Default
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonProperty("livros")
+    private List<Livro> livros = new ArrayList<>();
 }
