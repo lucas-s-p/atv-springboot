@@ -1,5 +1,13 @@
 package biblioteca.biblioteca.Repository;
+import java.util.List;
 
-public class LivroRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import biblioteca.biblioteca.Model.Livro;
+
+@Repository 
+public interface LivroRepository extends JpaRepository<Livro, String> {
+
+    List<Livro> findByTituloContainingIgnoreCase(String titulo);
 }

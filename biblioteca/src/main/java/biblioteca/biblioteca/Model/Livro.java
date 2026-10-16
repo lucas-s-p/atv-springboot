@@ -1,12 +1,14 @@
 package biblioteca.biblioteca.Model;
 
+import java.time.Year;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,18 +19,29 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "tb_livro")
 @Data
+@Builder 
 @NoArgsConstructor
+@AllArgsConstructor
 public class Livro {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "isbn")
     @JsonProperty("isbn")
-    private Long ISBN;
+    private String isbn;
 
     @Column(name = "titulo")
     @JsonProperty("titulo")
     private String titulo;
 
-    @Column(name = "autor")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_autor")
+    @JsonProperty("autor")
     private Autor autor;
 
+    @Column(name = "ano")
+    @JsonProperty("ano")
+    private Integer ano;
+
+    @Column(name = "edicao")
+    @JsonProperty("edicao")
+    private Integer edicao;
 }
