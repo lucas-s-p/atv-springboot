@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Builder
 @Data
@@ -27,6 +30,9 @@ public class Autor {
     @JsonProperty("nacionalidade")
     private String nacionalidade;
 
-    // Adicione a relação com Livro aqui
+    //A relação de Autor com Livro é de 1..N
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<Livro> livros = new ArrayList<>();
 
 }
